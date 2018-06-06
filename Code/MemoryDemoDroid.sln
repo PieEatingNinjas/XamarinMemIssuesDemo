@@ -1,0 +1,21 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryDemoDroid", "MemoryDemoDroid\MemoryDemoDroid.csproj", "{FFE7D1F3-A2A8-40BC-918E-A3D8977B8D5B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FFE7D1F3-A2A8-40BC-918E-A3D8977B8D5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFE7D1F3-A2A8-40BC-918E-A3D8977B8D5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFE7D1F3-A2A8-40BC-918E-A3D8977B8D5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFE7D1F3-A2A8-40BC-918E-A3D8977B8D5B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.VersionControlPolicy = $1
+	EndGlobalSection
+EndGlobal
