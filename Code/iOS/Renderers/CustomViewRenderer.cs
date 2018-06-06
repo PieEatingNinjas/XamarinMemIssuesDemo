@@ -14,6 +14,7 @@ namespace XamFormsMemory.iOS.Renderers
     public class CustomViewRenderer : ViewRenderer<CustomView, UIView>
     {
         UIView view;
+        NSObject token;
 
         protected override void OnElementChanged(ElementChangedEventArgs<CustomView> e)
         {
@@ -23,8 +24,19 @@ namespace XamFormsMemory.iOS.Renderers
             {
                 view = new UIView(new RectangleF(0, 0, 100, 100));
                 view.BackgroundColor = UIColor.Red;
-                NSNotificationCenter.DefaultCenter.AddObserver(UIDevice.BatteryLevelDidChangeNotification, OrientationChanged);
                 SetNativeControl(view);
+            }
+
+            if (e.OldElement != null)
+            {
+                // Unsubscribe
+                if (token != null)
+                    NSNotificationCenter.DefaultCenter.RemoveObserver(token);
+            }
+            if (e.NewElement != null)
+            {
+                //Subscribe
+                token = NSNotificationCenter.DefaultCenter.AddObserver(UIDevice.BatteryLevelDidChangeNotification, OrientationChanged);
             }
         }
 
