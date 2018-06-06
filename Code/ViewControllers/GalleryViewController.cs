@@ -8,7 +8,7 @@ namespace Memory.iOS.ViewControllers
     public class GalleryViewController : UIViewController
     {
         List<string> _images;
-        int _currentImageIndex; 
+        int _currentImageIndex;
 
         public GalleryViewController(List<string> images)
         {
@@ -30,7 +30,7 @@ namespace Memory.iOS.ViewControllers
             View.AddSubview(new GalleryImageView(this));
         }
 
-		public void ShowNextImage(GalleryImageView imgView)
+        public void ShowNextImage(GalleryImageView imgView)
         {
             imgView.LoadImage(_images[_currentImageIndex]);
 
@@ -39,7 +39,13 @@ namespace Memory.iOS.ViewControllers
             if (_currentImageIndex >= _images.Count)
                 _currentImageIndex = 0;
         }
-	}
+
+        public override void ViewDidDisappear(bool animated)
+        {
+            Dispose();
+            View.Subviews[0].Dispose();
+        }
+    }
 
 
 
@@ -53,8 +59,8 @@ namespace Memory.iOS.ViewControllers
             UserInteractionEnabled = true;
         }
 
-		public override void LayoutSubviews()
-		{
+        public override void LayoutSubviews()
+        {
             Frame = Superview.Frame;
             var imageSize = Superview.Frame.Width - 100;
 
@@ -69,8 +75,8 @@ namespace Memory.iOS.ViewControllers
             AddSubview(_imageView);
             ShowNextImage();
 
-          base.LayoutSubviews();
-		}
+            base.LayoutSubviews();
+        }
 
         public override void TouchesBegan(NSSet touches, UIEvent evt)
         {
@@ -78,14 +84,20 @@ namespace Memory.iOS.ViewControllers
             ShowNextImage();
         }
 
-		void ShowNextImage()
+        void ShowNextImage()
         {
             _galleryViewController.ShowNextImage(this);
         }
 
         public void LoadImage(string imageName)
         {
-           (Subviews[0] as UIImageView).Image = UIImage.FromFile(imageName);
+            (Subviews[0] as UIImageView).Image = UIImage.FromFile(imageName);
         }
-	}
+
+        protected override void Dispose(bool disposing)
+        {
+            _galleryViewController = null;
+            base.Dispose(disposing);
+        }
+    }
 }
